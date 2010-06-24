@@ -15,5 +15,5 @@
 
         -if using_tiny_mce?
           :javascript
-            tinymce.PluginManager.load('atd-tinymce', '/plugin_assets/community_engine_spellcheck/javascripts/atd-tinymce/editor_plugin_src.js');
+            tinymce.PluginManager.load('atd-tinymce', '/plugin_assets/community_engine_spellcheck/javascripts/atd-tinymce/editor_plugin.js');
           = tiny_mce        

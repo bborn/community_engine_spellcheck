@@ -73,13 +73,13 @@ if(request.responseXML.getElementsByTagName('message').item(0)!=null)
 var results=core.processXML(request.responseXML);var ecount=0;if(results.count>0)
 {ecount=plugin.markMyWords(results.errors);ed.suggestions=results.suggestions;}
 if(ecount==0&&(!callback||callback==undefined))
-ed.windowManager.alert(plugin.editor.getLang('AtD.message_no_errors_found','No writing errors were found.'));else if(callback)
-callback(ecount);});});editor.onInit.add(function()
+if(plugin.isSaving){}else{ed.windowManager.alert(plugin.editor.getLang('AtD.message_no_errors_found','No writing errors were found.'));}
+else if(callback){callback(ecount);}});});editor.onInit.add(function()
 {if(editor.settings.content_css!==false)
 {editor.dom.loadCSS(editor.getParam("atd_css_url",url+'/css/content.css'));}});editor.onClick.add(plugin._showMenu,plugin);editor.onContextMenu.add(plugin._showMenu,plugin);editor.onPreProcess.add(function(sender,object)
 {var dom=sender.dom;each(dom.select('span',object.node).reverse(),function(n)
 {if(n&&(dom.hasClass(n,'hiddenGrammarError')||dom.hasClass(n,'hiddenSpellError')||dom.hasClass(n,'hiddenSuggestion')||dom.hasClass(n,'mceItemHidden')||(dom.getAttrib(n,'class')==""&&dom.getAttrib(n,'style')==""&&dom.getAttrib(n,'id')==""&&!dom.hasClass(n,'Apple-style-span')&&dom.getAttrib(n,'mce_name')=="")))
-{dom.remove(n,1);}});});editor.onBeforeExecCommand.add(function(editor,command)
+{dom.remove(n,1);}});});editor.onSubmit.add(function(ed,e){if(plugin.force_save){plugin.force_save=false;return true;}else{Event.stop(e);ed.execCommand('mceWritingImprovementTool',function(count){if(count>0){ed.windowManager.confirm("There are "+count+" spelling errors. Do you want to continue saving?",function(s){if(s){e.target.submit();}});return false;}else{e.target.submit();}});}});editor.onBeforeExecCommand.add(function(editor,command)
 {if(command=='mceCodeEditor')
 {plugin._removeWords();}
 else if(command=='mceFullScreen')
