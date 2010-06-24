@@ -16,6 +16,8 @@ end
 TinyMCE::OptionValidator.valid_options = ['atd_rpc_id', 'atd_rpc_url', 'atd_css_url', 'atd_button_url']  
 
 AppConfig.default_mce_options.merge!({
+  :theme_advanced_buttons1_add => %w{AtD},
+  :plugins => AppConfig.default_mce_options[:plugins] | %w{-AtD},
   :atd_rpc_id => AppConfig.atd_spellcheck_key,
   :atd_rpc_url => '/base/atd_spellcheck?url=',
   :atd_css_url => '/plugin_assets/community_engine_spellcheck/javascripts/atd-tinymce/css/content.css',
