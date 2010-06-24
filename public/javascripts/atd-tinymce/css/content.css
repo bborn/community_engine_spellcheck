@@ -1,0 +1,18 @@
+.hiddenSpellError
+{
+   border-bottom: 2px dotted red;
+   cursor: default;
+}
+
+.hiddenGrammarError
+{
+   border-bottom: 2px dotted green;
+   cursor: default;
+}
+
+.hiddenSuggestion
+{
+   border-bottom: 2px dotted blue;
+   cursor: default;
+}
+
