@@ -13,7 +13,7 @@ module TinyMCE
   end
 end
 
-TinyMCE::OptionValidator.valid_options = ['atd_rpc_id', 'atd_rpc_url', 'atd_css_url', 'atd_button_url']  
+TinyMCE::OptionValidator.valid_options = ['atd_rpc_id', 'atd_rpc_url', 'atd_css_url', 'atd_button_url', 'atd_autocheck']  
 
 AppConfig.default_mce_options.merge!({
   :theme_advanced_buttons1_add => %w{AtD},

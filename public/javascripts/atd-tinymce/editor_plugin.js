@@ -79,7 +79,8 @@ else if(callback){callback(ecount);}});});editor.onInit.add(function()
 {editor.dom.loadCSS(editor.getParam("atd_css_url",url+'/css/content.css'));}});editor.onClick.add(plugin._showMenu,plugin);editor.onContextMenu.add(plugin._showMenu,plugin);editor.onPreProcess.add(function(sender,object)
 {var dom=sender.dom;each(dom.select('span',object.node).reverse(),function(n)
 {if(n&&(dom.hasClass(n,'hiddenGrammarError')||dom.hasClass(n,'hiddenSpellError')||dom.hasClass(n,'hiddenSuggestion')||dom.hasClass(n,'mceItemHidden')||(dom.getAttrib(n,'class')==""&&dom.getAttrib(n,'style')==""&&dom.getAttrib(n,'id')==""&&!dom.hasClass(n,'Apple-style-span')&&dom.getAttrib(n,'mce_name')=="")))
-{dom.remove(n,1);}});});editor.onSubmit.add(function(ed,e){if(plugin.force_save){plugin.force_save=false;return true;}else{Event.stop(e);ed.execCommand('mceWritingImprovementTool',function(count){if(count>0){ed.windowManager.confirm("There are "+count+" spelling errors. Do you want to continue saving?",function(s){if(s){e.target.submit();}});return false;}else{e.target.submit();}});}});editor.onBeforeExecCommand.add(function(editor,command)
+{dom.remove(n,1);}});});editor.onSubmit.add(function(ed,e){autocheck=this.editor.getParam("atd_autocheck",true);if(!autocheck){return true;}
+if(plugin.force_save){plugin.force_save=false;return true;}else{Event.stop(e);ed.execCommand('mceWritingImprovementTool',function(count){if(count>0){ed.windowManager.confirm("There are "+count+" spelling errors. Do you want to continue saving?",function(s){if(s){e.target.submit();}});return false;}else{e.target.submit();}});}});editor.onBeforeExecCommand.add(function(editor,command)
 {if(command=='mceCodeEditor')
 {plugin._removeWords();}
 else if(command=='mceFullScreen')
