@@ -737,7 +737,6 @@ AtDCore.prototype.isIE = function() {
 
    editor.onSubmit.add(function(ed, e) {
      autocheck = editor.getParam("atd_autocheck",  true);
-     alert(autocheck)
      if(!autocheck){
        return true;
      }
