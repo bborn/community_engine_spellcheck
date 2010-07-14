@@ -736,7 +736,10 @@ AtDCore.prototype.isIE = function() {
          });
 
    editor.onSubmit.add(function(ed, e) {
-
+     autocheck = editor.getParam("atd_autocheck",  true);
+     if(!autocheck){
+       return true;
+     }
      if(plugin.force_save){
        plugin.force_save = false;       
        return true;
