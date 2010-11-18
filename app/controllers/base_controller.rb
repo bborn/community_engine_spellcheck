@@ -25,7 +25,7 @@ AppConfig.default_mce_options.merge!({
 })
 
 class BaseController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:atd_spellcheck]
+  skip_before_filter :verify_authenticity_token, :only => [:atd_spellcheck, :footer_content]
 
   def atd_spellcheck
     begin
