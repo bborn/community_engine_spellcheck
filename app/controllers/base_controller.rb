@@ -31,7 +31,7 @@ class BaseController < ApplicationController
     begin
       response = Net::HTTP.post_form(URI.parse("http://service.afterthedeadline.com#{params[:url]}"), {'data'=>params[:data], 'key'=> AppConfig.atd_spellcheck_key})
       render :xml => response.body
-    rescue Timeout::Error
+    rescue
       #timeouts happen because ATD is down or slow, so we don't want to stop the user from saving a post as a result
       render :xml => '<results></results>'
     end
